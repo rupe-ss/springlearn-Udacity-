@@ -5,8 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import javax.management.MXBean;
-
 @SpringBootApplication
 @Configuration
 public class SpringlearnApplication {
@@ -17,14 +15,20 @@ public class SpringlearnApplication {
 
     @Bean
     public String message(){
-        System.out.println("Inside message");
+        System.out.println("Creating message Bean.");
         return "Hello String";
     }
 
     @Bean
-    public String compoundMessage(){
-        System.out.println("This is compound message");
-        return "Compund Message";
+    public String uppercaseMessage(MessageService messageService){
+        System.out.println("Creating uppercase message bean.");
+        return messageService.uppercase();
+    }
+
+    @Bean
+    public String lowercaseMessage(MessageService messageService){
+        System.out.println("Creating lowercase message bean.");
+        return messageService.lowercase();
     }
 
 
